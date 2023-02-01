@@ -58,4 +58,8 @@ if __name__ == "__main__":
     parser.add_argument(
         '--port', help='Number of the port to run the server on (8080 by default).', default=8080, type=int)
     args = parser.parse_args()
+
+    app.template_folder = app.root_path + '/dist'
+    app.static_folder = app.root_path + '/dist/static'
+    
     app.run(host='127.0.0.1', port=args.port, debug=True)
