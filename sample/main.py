@@ -19,4 +19,4 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 query = args.query
 context = args.context
 
-print(ask(query, context))
+print(ask(query, context, 'libraries/articles.json'))

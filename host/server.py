@@ -50,7 +50,7 @@ def start():
 
 @app.route("/", methods=["GET"])
 def start_sample():
-    return render_template("query.html", config=config)
+    return render_template("index.html", config=config)
 
 
 if __name__ == "__main__":

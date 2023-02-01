@@ -103,7 +103,7 @@ def get_completion(prompt, answer_length=None, completion_model=COMPLETION_MODEL
 def get_completion_with_context(query, context, answer_length=None, completion_model=COMPLETION_MODEL_NAME):
     # Borrowed from https://github.com/openai/openai-cookbook/blob/838f000935d9df03e75e181cbcea2e306850794b/examples/Question_answering_using_embeddings.ipynb
 
-    prompt = f"Answer the question as truthfully as possible using the provided context, and if the answer is not contained within the text below, say \"I don't know.\"\n\nContext:\n{context} \n\nQuestion:\n{query}\n\nAnswer:"
+    prompt = f"Answer the question as truthfully as possible using the provided context, and if don't have the answer, say in a friendly tone that Mr. Penguin does not know the answer and suggest looking for this information elsewhere.\n\nContext:\n{context} \n\nQuestion:\n{query}\n\nAnswer:"
     return get_completion(prompt, answer_length=answer_length, completion_model=completion_model)
 
 
@@ -116,5 +116,8 @@ def ask(query, context_query=None, library_file=None, answer_length=None, comple
     library.compute_similarities(query_embedding)
     library.sort = 'similarity'
 
+    print('ask')
+    print('context_query', context_query)
+    print('library_file', library_file)
     context = library.text
     return get_completion_with_context(query, context, answer_length=answer_length, completion_model=completion_model), library.unique_infos
